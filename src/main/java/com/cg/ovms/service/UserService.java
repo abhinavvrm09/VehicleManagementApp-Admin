@@ -1,182 +1,36 @@
 package com.cg.ovms.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-
 import com.cg.ovms.entities.User;
 import com.cg.ovms.repository.IUserRepository;
 
-public class UserService implements IUserRepository {
+public class UserService implements IUserService {
 
-	@Autowired
-	IUserRepository userRepo;
+	IUserRepository userService;
 	
-	@Override
-	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return userRepo.findAll();
-	}
-
-	@Override
-	public List<User> findAll(Sort sort) {
-		// TODO Auto-generated method stub
-		return userRepo.findAll();
-	}
-
-	@Override
-	public List<User> findAllById(Iterable<Integer> ids) {
-		// TODO Auto-generated method stub
-		return userRepo.findById(ids).get();
-	}
-
-	@Override
-	public <S extends User> List<S> saveAll(Iterable<S> entities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void flush() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public <S extends User> S saveAndFlush(S entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteInBatch(Iterable<User> entities) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteAllInBatch() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public User getOne(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> List<S> findAll(Example<S> example) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> List<S> findAll(Example<S> example, Sort sort) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Page<User> findAll(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<User> findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean existsById(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete(User entity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends User> entities) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteAll() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public <S extends User> Optional<S> findOne(Example<S> example) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> Page<S> findAll(Example<S> example, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends User> long count(Example<S> example) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public <S extends User> boolean exists(Example<S> example) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	@Override
 	public User validateUser(User user) {
 		// TODO Auto-generated method stub
-		return null;
+		User user2= userService.findById(user.getUserId()).get();
+		if(user.getPassword()==user2.getPassword())
+		{
+			return user;
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 	@Override
 	public User addUser(User user) {
 		// TODO Auto-generated method stub
-		return userRepo.save(user);
+		return userService.addUser(user);
 	}
 
 	@Override
 	public User removeUser(User user) {
 		// TODO Auto-generated method stub
-		return userRepo.delete(user);
+		return userService.removeUser(user);
 	}
 
 	@Override

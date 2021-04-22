@@ -12,22 +12,40 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.ovms.entities.User;
 import com.cg.ovms.service.IUserService;
 
+import io.swagger.annotations.Api;
+
+@Api(value="VehicleManagement")
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value="/vehicalManagement/user")
 public class UserController {
 
 	@Autowired
 	IUserService userService;
 	
 	@PostMapping(value="/addUser")
-	public User addUser(@RequestBody User user)
+	public ResponseEntity<Object> addUser(@RequestBody User user)
 	{
-		return userService.addUser(user);
+		userService.addUser(user);
+		return new ResponseEntity<Object>("added",HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value="/deleteById/{id}")
-	public User deleteById(@RequestBody User user)
+	public ResponseEntity<Object> deleteById(@RequestBody User user)
 	{
-		return userService.removeUser(user);
+		 userService.removeUser(user);
+		 return new ResponseEntity<Object>("deleted",HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/validateUser")
+	public ResponseEntity<Object> validateUser(@RequestBody User user)
+	{
+		if(userService.validateUser(user)==null)
+		{
+			return new ResponseEntity<Object>("invalid user",HttpStatus.NOT_FOUND);
+		}
+		else
+		{
+			return new ResponseEntity<Object>("user found",HttpStatus.OK);
+		}
 	}
 }

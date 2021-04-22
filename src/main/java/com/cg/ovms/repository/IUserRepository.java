@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.ovms.entities.User;
 
 @Repository
-public interface IUserRepository extends JpaRepository<User, Integer>{
+public interface IUserRepository extends JpaRepository<User, String>{
 
 	public User validateUser(User user);
 	public User addUser(User user);
