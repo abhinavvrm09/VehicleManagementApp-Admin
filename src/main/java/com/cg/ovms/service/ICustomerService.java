@@ -10,10 +10,10 @@ import com.cg.ovms.entities.Customer;
 public interface ICustomerService {
 
 	public Customer addCustomer(Customer customer);
-	public Customer removeCustomer(Customer customer);
-	public Customer viewCustomer(Customer c);
+	public void removeCustomer(Customer customer);
+	public Customer viewCustomer(Customer customer);
 	public Customer updateCustomer(Customer c);
-	public List<Customer> viewAllCustomer(String vtype);
-	public List<Customer> viewAllCustomersByLocation(String location);
+//	public Customer viewAllCustomer(String vtype);
+//    public Customer viewAllCustomersByLocation(String location);
 	
 }

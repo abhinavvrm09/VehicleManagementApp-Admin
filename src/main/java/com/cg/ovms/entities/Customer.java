@@ -2,6 +2,8 @@ package com.cg.ovms.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +16,9 @@ public class Customer {
 	private String mobileNumber;
 	private String emailId;
 	private String address;
-	
+	@OneToOne
+	@JoinColumn(name="userId")
+	private User user;
 	
 	public int getCustomerId() {
 		return customerId;

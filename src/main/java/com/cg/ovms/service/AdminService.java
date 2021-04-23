@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.cg.ovms.entities.Booking;
 import com.cg.ovms.entities.Customer;
 import com.cg.ovms.entities.Payment;
+import com.cg.ovms.entities.User;
 import com.cg.ovms.entities.Vehicle;
 import com.cg.ovms.repository.IAdminRepository;
 
@@ -66,9 +67,9 @@ public class AdminService implements IAdminService{
 	}
 
 	@Override
-	public Customer removeCustomer(Customer customer) {
+	public void removeCustomer(Customer customer) {
 		// TODO Auto-generated method stub
-		 return adminRepository.removeCustomer(customer);
+		  adminRepository.removeCustomer(customer);
 	}
 
 	@Override
@@ -83,17 +84,6 @@ public class AdminService implements IAdminService{
 		return adminRepository.updateCustomer(c);
 	}
 
-	@Override
-	public List<Customer> viewAllCustomer(String vtype) {
-		// TODO Auto-generated method stub
-		return adminRepository.viewAllCustomer(vtype);
-	}
-
-	@Override
-	public List<Customer> viewAllCustomersByLocation(String location) {
-		// TODO Auto-generated method stub
-		return adminRepository.viewAllCustomersByLocation(location);
-	}
 
 	@Override
 	public Booking addPayment(Payment payment) {
@@ -114,9 +104,9 @@ public class AdminService implements IAdminService{
 	}
 
 	@Override
-	public List<Booking> viewAllPayments(Vehicle vehicle) {
+	public List<Booking> viewAllPayments() {
 		// TODO Auto-generated method stub
-		return adminRepository.viewAllPayments(vehicle);
+		return adminRepository.viewAllPayments();
 	}
 
 	@Override
@@ -177,6 +167,48 @@ public class AdminService implements IAdminService{
 	public List<Vehicle> viewAllVehicle() {
 		// TODO Auto-generated method stub
 		return adminRepository.viewAllVehicle();
+	}
+
+	@Override
+	public void cancelPaymentById(int paymentId) {
+		// TODO Auto-generated method stub
+		adminRepository.cancelPaymentById(paymentId);
+	}
+
+	@Override
+	public User validateUser(User user) {
+		// TODO Auto-generated method stub
+		return adminRepository.validateUser(user);
+	}
+
+	@Override
+	public User addUser(User user) {
+		// TODO Auto-generated method stub
+		return adminRepository.addUser(user);
+	}
+
+	@Override
+	public User removeUser(User user) {
+		// TODO Auto-generated method stub
+		return adminRepository.removeUser(user);
+	}
+
+	@Override
+	public User signOut(User user) {
+		// TODO Auto-generated method stub
+		return adminRepository.signOut(user);
+	}
+
+	@Override
+	public Payment viewPaymentByBooking(Booking booking) {
+		// TODO Auto-generated method stub
+		return adminRepository.viewPaymentByBooking(booking);
+	}
+
+	@Override
+	public List<Payment> viewAllPaymentsByVehicle(Vehicle vehicle) {
+		// TODO Auto-generated method stub
+		return adminRepository.viewAllPaymentsByVehicle(vehicle);
 	}
 	
 	

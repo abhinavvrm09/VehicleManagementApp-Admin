@@ -19,7 +19,7 @@ public class Booking {
 	private Customer customer;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="customer_id")
+	@JoinColumn(name="vehicle_id")
 	private Vehicle vehicle;
 	private LocalDate bookingDate;
 	private LocalDate bookedTillDate;
